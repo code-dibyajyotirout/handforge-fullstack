@@ -14,16 +14,17 @@ export default function HomePage() {
       {/* Mode Switcher */}
       <div style={{
         position: "fixed",
-        top: "16px",
-        right: "24px",
-        zIndex: 9999,
+        top: "8px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 99999,
         display: "flex",
         background: "rgba(15, 23, 42, 0.85)",
         border: "1px solid rgba(56, 189, 248, 0.3)",
         borderRadius: "8px",
-        padding: "4px",
+        padding: "3px",
         backdropFilter: "blur(12px)",
-        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)"
+        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5)"
       }}>
         <button
           onClick={() => setViewMode("studio")}
