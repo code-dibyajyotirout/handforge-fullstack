@@ -1,0 +1,88 @@
+// Prisma schema for HandForge fullstack architecture
+// Datasource: PostgreSQL 16
+// Client generator: prisma-client-js
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String          @id @default(cuid())
+  email     String          @unique
+  username  String          @unique
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  sculpts   SculptProject[]
+  gallery   GalleryItem[]
+
+  @@map("users")
+}
+
+model SculptProject {
+  id          String         @id @default(cuid())
+  userId      String?
+  user        User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
+  title       String         @default("Untitled Sculpt")
+  magic       String         @default("HF3D")
+  version     Int            @default(2)
+  shape       String         @default("sphere")
+  material    String         @default("clay")
+  vertexCount Int            @default(66420)
+  partsJson   Json
+  brushConfig Json
+  keyframes   MeshKeyframe[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("sculpt_projects")
+}
+
+model MeshKeyframe {
+  id        String        @id @default(cuid())
+  projectId String
+  project   SculptProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  frame     Int
+  partsData Json
+  createdAt DateTime      @default(now())
+
+  @@index([projectId, frame])
+  @@map("mesh_keyframes")
+}
+
+model GalleryItem {
+  id           String   @id @default(cuid())
+  title        String
+  author       String
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  vertexCount  Int
+  likes        Int      @default(0)
+  thumbnailUrl String?
+  projectData  Json
+  createdAt    DateTime @default(now())
+
+  @@index([likes(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+  @@map("gallery_items")
+}
+
+model TelemetryLog {
+  id            String   @id @default(cuid())
+  sessionId     String
+  fps           Float
+  handCount     Int
+  activeGesture String
+  vertexCount   Int
+  brushPressure Float
+  createdAt     DateTime @default(now())
+
+  @@index([sessionId, createdAt])
+  @@map("telemetry_logs")
+}

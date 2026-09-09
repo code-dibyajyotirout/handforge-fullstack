@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.env*
+!.env.example
+
+# Build Artifacts
+dist/
+.next/
+out/
+build/
+*.egg-info/
+
+# Logs & Databases
+*.log
+*.sqlite3
+*.db
+
+# System files
+.DS_Store
+.turbo/

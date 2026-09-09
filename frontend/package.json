@@ -1,0 +1,46 @@
+{
+  "name": "handforge-frontend",
+  "version": "1.0.0",
+  "description": "Browser-Native Spatial 3D Digital Sculpting & Animation Studio Frontend",
+  "license": "AGPL-3.0-only",
+  "author": "Dibyajyoti Rout <code.dibyajyotirout@gmail.com>",
+  "homepage": "https://github.com/code-dibyajyotirout/handforge-fullstack#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-dibyajyotirout/handforge-fullstack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/code-dibyajyotirout/handforge-fullstack/issues"
+  },
+  "keywords": [
+    "spatial-computing",
+    "3d-sculpting",
+    "webgpu",
+    "threejs",
+    "mediapipe",
+    "hand-tracking",
+    "computer-vision",
+    "animation-timeline",
+    "agpl"
+  ],
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.35",
+    "@types/three": "^0.185.0",
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
